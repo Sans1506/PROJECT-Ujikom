@@ -13,6 +13,7 @@ class dashboardController extends Controller
         return view ("pages.dashboard");
     }
     public function index(){
+        // $data = Inputdata::orderBy('created_at', 'DESC')->get();
         $data = DB::table('inputdatas')
             ->join('users', 'users.id', '=', 'inputdatas.id_user')
             ->select('inputdatas.tanggal','inputdatas.jam','inputdatas.lokasi','inputdatas.suhu')
@@ -21,6 +22,7 @@ class dashboardController extends Controller
             ->withQueryString();
 
         return view ('pages.dashboard',['data'=>$data]);
+        // return view ('pages.dashboard',compact('data'));
     }
     
     public function urutkanPerjalanan(Request $request)
